@@ -2,8 +2,9 @@
 # imports
 import pandas as pd
 import numpy as np
+from sklearn.linear_model import LogisticRegression
 
-from Dataloader import data, train, val, test
+from Dataloader import  train, X_train_vec, y_train
 # %%
 # Baseline: Majority model
 
@@ -23,9 +24,13 @@ def Majority_model(data):
     else:
         return 0
 
-# "Train" the model
+# Fitting the model
 Majority_class = Majority_model(train)
 
 
 # %%
-# Baseline: simple regression model
+# Baseline: simple logistic regression model
+LogisticRegression_model = LogisticRegression(max_iter=1000, class_weight="balanced")
+
+# Fitting the model
+LogisticRegression_model.fit(X_train_vec, y_train.values.ravel())
