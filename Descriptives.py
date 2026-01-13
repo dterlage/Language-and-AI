@@ -1,16 +1,41 @@
-#%% run only once, at the start
 #imports
 import pandas as pd
 import matplotlib.pyplot as plt
-
-from Dataloader import data, train, val, test
+import spacy
+from Dataloader import data, train, val, test, corpus_0, corpus_1
 
 # %%
 #what does the data look like?
 print(data.head())
 print(data.shape) #(40452, 3)
 print(data.isnull().sum()) #no missing data
-print(round(test.extrovert == 1).sum() / len(data) * 100)
+
+# -----added: is this double work? 
+tokens_0 = []
+tokens_1 = []
+nlp = spacy.blank("en")
+
+#tokenizing per class
+for post in nlp.pipe(corpus_0, batch_size=1000):
+    tokens_0.extend(token.lower_ for token in post)
+print("d")
+for post in nlp.pipe(corpus_1, batch_size=1000):
+    tokens_1.extend(token.lower_ for token in post)
+
+print("Total tokens in class 0: ", len(tokens_0))
+print("Total tokens in class 1: ", len(tokens_1))
+
+tokens_both = set(tokens_0) & set(tokens_1)
+only_0 = set(tokens_0) - set(tokens_1)
+only_1 = set(tokens_1) - set(tokens_0)
+
+print("Shared tokens:", len(tokens_both))
+print("Only in class 0:", len(only_0))
+print("Only in class 1:", len(only_1))
+
+print("Unique tokens in class 0:", len(tokens_both)+ len(only_0))
+print("Unique tokens in class 1:", len(tokens_both)+ len(only_1))
+#----- until here: is this double work?
 
 # %%
 split_info = {
