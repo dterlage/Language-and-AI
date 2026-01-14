@@ -6,9 +6,14 @@ data = pd.read_csv("download/extrovert_introvert.csv")
 nlp = spacy.blank("en")
 #nlp = spacy.load("en_core_web_sm")
 
-corpus_0 = data.loc[data.extrovert == 0, "post"].astype(str).tolist()
-corpus_1 = data.loc[data.extrovert == 1, "post"].astype(str).tolist()
-
+corpus_0 = []
+corpus_1 = []
+for index, row in data.iterrows():
+    if row.extrovert == 0:
+        corpus_0.append(row.post)
+    else:
+        corpus_1.append(row.post)
+        
 tokens_0 = []
 tokens_1 = []
 
