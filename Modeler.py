@@ -99,19 +99,19 @@ print(f"10 trees with stratified split: \ntraining accuracy = {rf_10_stratify_tr
 #random split: best = 5 
 #stratified split: best = 1 
 from sklearn import metrics
-y_pred_logreg = rf_5_random.predict(dl.X_test_vec)
-y_pred_tree = rf_1_stratify.predict(dl.X_test_s_vec)
+y_pred_r = rf_5_random.predict(dl.X_test_vec)
+y_pred_s = rf_1_stratify.predict(dl.X_test_s_vec)
 
-precision_logreg = round(metrics.precision_score(dl.y_test, y_pred_logreg), 3)
-recall_logreg = round(metrics.recall_score(dl.y_test, y_pred_logreg), 3)
-accuracy_logreg = round(rf_1_random.score(dl.X_test_vec, dl.y_test), 3)
-f1_logreg = round(metrics.f1_score(dl.y_test, y_pred_logreg, average="weighted"), 3)
-print(f"The model with the random split has an precision of {precision_logreg}, a recall of {recall_logreg}, an accuracy of {accuracy_logreg}, and an f1 of {f1_logreg}. ")
+precision_r = round(metrics.precision_score(dl.y_test, y_pred_r), 3)
+recall_r = round(metrics.recall_score(dl.y_test, y_pred_r), 3)
+accuracy_r = round(rf_1_random.score(dl.X_test_vec, dl.y_test), 3)
+f1_r = round(metrics.f1_score(dl.y_test, y_pred_r, average="weighted"), 3)
+print(f"The model with the random split has an precision of {precision_r}, a recall of {recall_r}, an accuracy of {accuracy_r}, and an f1 of {f1_r}. ")
 
-precision_tree = round(metrics.precision_score(dl.y_test_s, y_pred_tree), 3)
-recall_tree = round(metrics.recall_score(dl.y_test_s, y_pred_tree), 3)
-accuracy_tree = round(rf_5_stratify.score(dl.X_test_s_vec, dl.y_test_s), 3)
-f1_tree = round(metrics.f1_score(dl.y_test, y_pred_tree, average="weighted"), 3)
-print(f"The model with a stratified split has an precision of {precision_tree}, a recall of {recall_tree}, an accuracy of {accuracy_tree}, and an f1 of {f1_tree}. ")
+precision_s = round(metrics.precision_score(dl.y_test_s, y_pred_s), 3)
+recall_s = round(metrics.recall_score(dl.y_test_s, y_pred_s), 3)
+accuracy_s = round(rf_5_stratify.score(dl.X_test_s_vec, dl.y_test_s), 3)
+f1_s = round(metrics.f1_score(dl.y_test, y_pred_s, average="weighted"), 3)
+print(f"The model with a stratified split has an precision of {precision_s}, a recall of {recall_s}, an accuracy of {accuracy_s}, and an f1 of {f1_s}. ")
 # %%
 

@@ -90,8 +90,4 @@ X_val_s_vec   = vectorizer.transform(X_val_s_text)
 X_test_s_vec  = vectorizer.transform(X_test_s_text)
 
 
-
-# %%
-print("EXPORTS:", [k for k in globals().keys() if "X_train" in k])
-
 # %%
