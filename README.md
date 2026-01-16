@@ -4,7 +4,7 @@ Repository for the experiments described in the report "Random forest for extrov
 ## 📜 Overview
 
 - 🔎 Paper Details
-    - 🦩tl;dr
+    - 🦩 tl;dr
     - ♻️ Reproduction
     - 🚀 Dependencies
     - 🌱 Resources
