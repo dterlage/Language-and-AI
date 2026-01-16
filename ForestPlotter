@@ -8,11 +8,11 @@ import numpy as np
 # %%
 feature_names = np.array(dl.vectorizer.get_feature_names_out())
 
-#plots the five trees in rf_5_random
+#plots the five trees in rf_50_random
 for i in range(5):
     plt.figure(figsize=(20,10))
     sk_tree.plot_tree(
-        m.rf_5_random.estimators_[i], 
+        m.rf_50_random.estimators_[i], 
         feature_names=feature_names, 
         class_names=['int','ex'], 
         filled=True, 
@@ -21,10 +21,10 @@ for i in range(5):
     )
     plt.savefig(f"tree_{i+1}_of_5.png");
 # %%
-#plots the tree in rf_1_stratify
+#plots the tree in rf_10_stratify
 plt.figure(figsize=(20,10))
 sk_tree.plot_tree(
-    m.rf_1_stratify.estimators_[0], 
+    m.rf_10_stratify.estimators_[0], 
     feature_names=feature_names, 
     class_names=['int','ex'], 
     filled=True, 
