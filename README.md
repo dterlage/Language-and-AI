@@ -1,5 +1,5 @@
 # Language-and-AI
-Repository for the experiments described in "Decision trees for extroversion and introversion classification" for the interm assignment for JBC090 Language and AI.
+Repository for the experiments described in the report "Random forest for extroversion and introversion classification with class imbalance" for the interim assignment for JBC090 Language and AI.
 
 ## 📜 Overview
 
@@ -21,8 +21,8 @@ We trained Random Forest classifiers and compared their performance against base
 
 ### ♻️ Reproduction
 
-To reproduce the results simply run `Evaluator.py`.  For more information on how the data looks like run `Descriptives.py`. However, we cannot share the data.
-
+To reproduce the results simply run `Evaluator.py`.  For more information on how the data looks like run `Descriptives.py`. However, we cannot share the data. So note that the data is to be uploaded separately and placed in a folder called 'download', whereas the file is to be called 'extrovert_introvert.csv'. 
+To generate the first tree of the chosen random forest classifiers, run `ForestPlotter.py`. 
 > \* The code was tested with Python 3.13.3 on Windows.
 
 ### 🚀 Dependencies
@@ -65,19 +65,19 @@ Modify the random_state parameter to use a different seed for the data split:
 > `Modeler.py` -- lines 42-58
 Modify the random_state parameter to use a different seed for the Random Forest models:
 ```python
-rf_1 = RandomForestClassifier(random_state=2026, 
+rf_10 = RandomForestClassifier(random_state=2026, 
                             criterion="entropy", 
                             n_estimators=10,
                             max_depth=20,
                             )
 
-rf_5 = RandomForestClassifier(random_state=2026, 
+rf_50 = RandomForestClassifier(random_state=2026, 
                             criterion="entropy", 
                             n_estimators=50,
                             max_depth=20,
                             )
 
-rf_10 = RandomForestClassifier(random_state=2026, 
+rf_100 = RandomForestClassifier(random_state=2026, 
                             criterion="entropy", 
                             n_estimators=100,
                             max_depth=20,
