@@ -11,7 +11,6 @@ print(data.head())
 print(data.shape) #(40452, 3)
 print(data.isnull().sum()) #no missing data
 
-# -----added: is this double work? 
 tokens_0 = []
 tokens_1 = []
 nlp = spacy.blank("en")
@@ -36,7 +35,6 @@ print("Only in class 1:", len(only_1))
 
 print("Unique tokens in class 0:", len(tokens_both)+ len(only_0))
 print("Unique tokens in class 1:", len(tokens_both)+ len(only_1))
-#----- until here: is this double work?
 
 # %%
 split_info = {
@@ -51,7 +49,6 @@ print(df_split.head())
 # %%
 # Latex table: https://www.tilburgsciencehub.com/topics/visualization/reporting-tables/reportingtables/pandas-latex-tables/
 # \usepackage{booktabs}
-#  Latex table for the bonus points ;)
 latex_table_split = df_split.to_latex(
     index=False,  # To not include the DataFrame index as a column in the table
     caption="Comparison of the train, validation and test data sets",  # The caption to appear above the table in the LaTeX document
@@ -106,3 +103,4 @@ ax.set_ylim(0, 40000)
 plt.xticks(rotation=45)
 
 plt.show()
+
