@@ -1,8 +1,9 @@
 #imports
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import spacy
-from Dataloader import data, train, val, test, corpus_0, corpus_1
+from Dataloader import data, train, val, test, corpus_0, corpus_1, train_s, val_s, test_s
 
 # %%
 #what does the data look like?
@@ -70,4 +71,38 @@ plt.legend(['train', 'validation', 'test'])
 plt.title("Stratified split", fontsize=15)
 plt.ylabel('Density', fontsize=12)
 plt.xticks([0, 1], ["Introvert", "Extrovert"], fontsize=12)
+#plt.show()
+
+# %%
+# Visualize the data sets with a bar chart
+sets = ["Train", "Train Stratified", "Validation", "Validation Stratified", "Test", "Test Stratified"]
+sets_info = {
+    "Size" : [train.shape[0], train_s.shape[0], val.shape[0], val_s.shape[0], test.shape[0],  test_s.shape[0]],
+    "Extrovert count" : [(train.extrovert == 1).sum(),(train_s.extrovert == 1).sum(), (val.extrovert == 1).sum(),
+                         (val_s.extrovert == 1).sum(), (test.extrovert == 1).sum(), (test_s.extrovert == 1).sum()],
+    "Introvert count" : [(train.extrovert == 0).sum(), (train_s.extrovert == 0).sum(), (val.extrovert == 0).sum(),
+                         (val_s.extrovert == 0).sum(), (test.extrovert == 0).sum(), (test_s.extrovert == 0).sum()]
+
+}
+
+x = np.arange(len(sets))  # the label locations
+width = 0.25  # the width of the bars
+multiplier = 0
+
+fig, ax = plt.subplots(layout='constrained')
+
+for attribute, measurement in sets_info.items():
+    offset = width * multiplier
+    rects = ax.bar(x + offset, measurement, width, label=attribute)
+    ax.bar_label(rects, padding=3)
+    multiplier += 1
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Count')
+ax.set_title('Data set splits')
+ax.set_xticks(x + width, sets)
+ax.legend(loc='upper left', ncols=3)
+ax.set_ylim(0, 40000)
+plt.xticks(rotation=45)
+
 plt.show()
