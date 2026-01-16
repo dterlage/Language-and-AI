@@ -45,6 +45,31 @@ print(f"Precision of Logistic Regression model: {precision_log:.3f}")
 print(f"Recall of Logistic Regression model: {recall_log:.3f}")
 print(f"F1-score of Logistic Regression model: {f1_log:.3f}")
 
+# %%
+# Latex table: Results Majority and Logsitic Regression model with random split test dataset
+test_info = {
+    "Model" : ["Majority", "Logistic Regression"],
+    "Accuracy" : [accuracy_maj, accuracy_log],
+    "Precision" : [precision_maj, precision_log],
+    "Recall" : [recall_maj, recall_log],
+    "F1-score" : [f1_maj, f1_log],
+    }
+df_test = pd.DataFrame(test_info)
+
+# Latex table: https://www.tilburgsciencehub.com/topics/visualization/reporting-tables/reportingtables/pandas-latex-tables/
+# \usepackage{booktabs}
+latex_table_test = df_test.to_latex(
+    index=False,  # To not include the DataFrame index as a column in the table
+    caption="Results Majority and Logisitic Regression model with random split test dataset.",  # The caption to appear above the table in the LaTeX document
+    label="tab:results_test",  # A label used for referencing the table within the LaTeX document
+    position="htbp",  # The preferred positions where the table should be placed in the document ('here', 'top', 'bottom', 'page')
+    column_format="lcccc",  # The format of the columns: left-aligend first column and center-aligned remaining columns as per APA guidelines
+    escape=False,  # Disable escaping LaTeX special characters in the DataFrame
+    float_format="{:0.2f}".format  # Formats floats to two decimal places
+)
+
+print(latex_table_test)
+
 
 #--------Random forest
 rf_1_random_train_score = round(m.rf_1_random.score(dl.X_train_vec, dl.y_train), 3)
@@ -92,4 +117,5 @@ recall_s = round(metrics.recall_score(dl.y_test_s, y_pred_s), 3)
 accuracy_s = round(m.rf_5_stratify.score(dl.X_test_s_vec, dl.y_test_s), 3)
 f1_s = round(metrics.f1_score(dl.y_test, y_pred_s, average="weighted"), 3)
 print(f"The model with a stratified split has an precision of {precision_s}, a recall of {recall_s}, an accuracy of {accuracy_s}, and an f1 of {f1_s}. ")
+
 # %%
